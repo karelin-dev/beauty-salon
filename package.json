@@ -1,0 +1,20 @@
+{
+  "name": "beauty-salon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Демо-лендинг студии красоты «Пион» с онлайн-записью: услуга, мастер, дата и время",
+  "author": "Ivan Karelin",
+  "license": "MIT",
+  "scripts": {
+    "dev": "run-p watch:css serve",
+    "watch:css": "tailwindcss -i src/styles.css -o docs/css/main.css --watch",
+    "serve": "browser-sync start --server docs --files \"docs/**/*\" --port 3001 --no-open --no-notify --no-ui",
+    "build": "tailwindcss -i src/styles.css -o docs/css/main.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "browser-sync": "^3.0.4",
+    "npm-run-all2": "^9.0.4",
+    "tailwindcss": "^4.3.3"
+  }
+}

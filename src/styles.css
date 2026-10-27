@@ -1,0 +1,142 @@
+@import "tailwindcss" source(none);
+@source "../docs/**/*.{html,js}";
+
+@theme {
+  --font-sans: "Jost", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Tenor Sans", Georgia, serif;
+
+  --color-ink: #241a22;
+  --color-muted: #6a5d66;
+  --color-berry: #6e1f43;
+  --color-berry-dark: #561634;
+  --color-peony: #f48faa;
+  --color-blush: #fbeef1;
+  --color-rose: #f6d6df;
+  --color-line: #eadde2;
+  --color-sage: #9dbb9a;
+  --color-gold: #e2c29a;
+  --color-disabled: #8f7f88;
+
+  --shadow-soft: 0 24px 60px rgb(110 31 67 / 0.14);
+  --shadow-ticket: 0 30px 70px rgb(110 31 67 / 0.12);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 24px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid #f6a9bd;
+    outline-offset: 2px;
+  }
+
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1240px] px-5 md:px-10;
+  }
+
+  .section {
+    @apply py-20 lg:py-[120px];
+  }
+
+  .eyebrow {
+    @apply text-sm font-medium tracking-[0.14em] text-berry uppercase;
+  }
+
+  .h2 {
+    @apply font-display text-[clamp(32px,4.2vw,56px)] leading-[1.08];
+  }
+
+  .lead {
+    @apply max-w-[400px] text-[17px] leading-relaxed text-muted;
+  }
+
+  .section-head {
+    @apply mb-10 flex flex-wrap items-end justify-between gap-x-16 gap-y-5 lg:mb-14;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 font-medium whitespace-nowrap transition-colors duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-berry text-white hover:bg-berry-dark;
+  }
+
+  .btn-outline {
+    @apply border-[1.5px] border-[#e2cdd5] text-ink hover:border-berry;
+  }
+
+  /* Чип-переключатель: белый на розовом фоне, chip-soft — розовый на белом */
+  .chip {
+    @apply h-[42px] cursor-pointer rounded-full px-[18px] text-[15px] font-medium transition-colors;
+  }
+
+  .chip:not([aria-pressed="true"], [aria-selected="true"]) {
+    @apply bg-white hover:bg-rose;
+  }
+
+  .chip-soft:not([aria-pressed="true"], [aria-selected="true"]) {
+    @apply bg-blush;
+  }
+
+  .chip[aria-pressed="true"],
+  .chip[aria-selected="true"] {
+    @apply bg-berry text-white;
+  }
+
+  /* Карточка выбора в форме записи: рамка у выбранной */
+  .choice {
+    @apply cursor-pointer border-2 border-transparent bg-white transition-colors hover:border-rose has-checked:border-berry has-checked:hover:border-berry;
+  }
+
+  /* Фокус для карточек, где сам radio скрыт */
+  .ring-focus {
+    @apply has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-[#f6a9bd];
+  }
+
+  .input {
+    @apply h-[52px] w-full rounded-[14px] border-[1.5px] border-transparent bg-blush px-[18px] text-base text-ink placeholder:text-[#9a8b93] focus:border-berry focus:outline-none aria-invalid:border-[#c2264b];
+  }
+
+  .input-light {
+    @apply h-14 w-full rounded-[14px] border-[1.5px] border-[#e2cdd5] bg-white px-[18px] text-base text-ink placeholder:text-[#9a8b93] focus:border-berry focus:outline-none aria-invalid:border-[#c2264b];
+  }
+
+  .field-error {
+    @apply mt-1.5 block text-[13px] text-[#c2264b] empty:hidden;
+  }
+
+  .icon {
+    @apply size-5 shrink-0 fill-none stroke-current stroke-2 [stroke-linecap:round] [stroke-linejoin:round];
+  }
+
+  .arch {
+    border-radius: 999px 999px 28px 28px;
+  }
+}
